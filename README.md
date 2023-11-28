@@ -1,7 +1,16 @@
 
 # Travel Agency web application
 
-This project is a full-stack travel agency web application which includes: get and post requests, full form validation, applying to sending emails, email body is styled, secured and a custom django admin panel, it also includes booking a trip and waiting until the admin approves it the admin has it's own page where he can approve and refuse book trips and the normal user has a page where he sees his own book trips and until admin approves or refuses it will stay with the status pending it also includes user managment page where the admin can manage all the users that once registered in the website the user can change his account data like his first name last name username email and password user can delete their account as well whenever they want
+This project is a full-stack travel agency web application which includes: 
+- get and post requests, 
+- full form validation, 
+- sending emails, 
+- email body is styled, 
+- secured and a custom django admin panel, 
+- booking a trip and waiting until the admin approves it the admin has it's own page where he can approve and refuse book trips and the normal user has a page where he sees his own book trips and until admin approves or refuses it will stay with the status pending it 
+- user managment page where the admin can manage all the users that once registered in the website 
+- the user can change his account data like his first name last name username email and password user can delete their account as well whenever they want
+g
 
 ## Tech Stack
 
