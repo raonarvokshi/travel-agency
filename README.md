@@ -28,7 +28,7 @@ g
 
 ## Author
 
-- [@raonarvokshi](https://www.github.com/RokiPR)
+- [@raonarvokshi](https://www.github.com/raonarvokshi)
 
 
 ## Contact Me
