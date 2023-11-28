@@ -41,10 +41,10 @@ python manage.py runserver
 
 ![App Screenshot](landing_page.png)
 
-![App Screenshot](/Users/raonarvokshi/Desktop/about_us_page)
+![App Screenshot](about_us_page.png)
 
-![App Screenshot](/Users/raonarvokshi/Desktop/our_services_page)
+![App Screenshot](our_services_page.png)
 
-![App Screenshot](/Users/raonarvokshi/Desktop/contact_us_page)
+![App Screenshot](contact_us_page.png)
 
-![App Screenshot](/Users/raonarvokshi/Desktop/book_now_page)
+![App Screenshot](book_your_trip_page.png)
