@@ -39,7 +39,7 @@ python manage.py runserver
 ```
 ## Screenshots
 
-![App Screenshot](../landing_page.png)
+![App Screenshot](landing_page.png)
 
 ![App Screenshot](/Users/raonarvokshi/Desktop/about_us_page)
 
