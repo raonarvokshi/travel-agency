@@ -4,6 +4,7 @@ from django.core.mail import EmailMultiAlternatives  # Required to send emails
 from django.template import loader  # Render templates on email body
 from .models import Registered_emails, Book
 from django.contrib import messages
+from django.db.models import Q
 
 
 def redirect_if_authenticated(view_func):
@@ -27,6 +28,7 @@ def redirect_if_not_authenticated(view_func):
 def redirect_for_change_pass(view_func):
     def _wrapped_view(request, *args, **kwargs):
         if not request.user.is_authenticated:
+            messages.error(request, "You need to login first")
             return redirect("login")
         return view_func(request, *args, **kwargs)
     return _wrapped_view
@@ -35,7 +37,7 @@ def redirect_for_change_pass(view_func):
 def redirect_if_not_superuser(view_func):
     def _wrapped_view(request, *args, **kwargs):
         if not request.user.is_superuser:
-            return redirect("home")
+            return not_found_error(request, args)
         return view_func(request, *args, **kwargs)
     return _wrapped_view
 
@@ -72,15 +74,30 @@ def register(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
 
-        new_user = User.objects.create_user(
-            username=username, email=email, password=password)
-        new_user.first_name = first_name
-        new_user.last_name = last_name
-        new_user.save()
-        messages.success(
-            request, "Your account was created successfully! please confirm it by logging in")
-        return redirect("login")
-    return render(request, "register.html")
+        if User.objects.filter(username=username).exists() and User.objects.filter(email=email).exists():
+            messages.error(request, "Username and email already exists!")
+            return redirect("register")
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists!")
+            return redirect("register")
+
+        elif User.objects.filter(email=email).exists():
+            messages.error(request, "Email already exists!")
+            return redirect("register")
+
+        else:
+            new_user = User.objects.create_user(
+                username=username, email=email, password=password)
+            new_user.first_name = first_name
+            new_user.last_name = last_name
+            new_user.save()
+            messages.success(
+                request, "Your account was created successfully! please confirm it by logging in")
+            return redirect("login")
+
+    else:
+        return render(request, "register.html")
 
 
 def logout(request):
@@ -123,6 +140,7 @@ def contact(request):
         email.send()
         messages.success(request, "Email sent successfully!")
         return redirect("contact")
+
     return render(request, "contact.html")
 
 
@@ -329,3 +347,7 @@ def delete_user(request, user_id):
     user.delete()
     messages.success(request, "User Deleted Successfully!")
     return redirect("manage_users")
+
+
+def not_found_error(request, exception):
+    return render(request, "error_page.html", status=404)

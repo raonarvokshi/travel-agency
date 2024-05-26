@@ -11,7 +11,7 @@
     <div class="text-center">
       <h1 class="border-bottom border-primary border-5 pb-1 d-inline-block mb-3">Book Your Trip</h1>
     </div>
-      <form action="" method="post" class="needs-validation" novalidate>
+      <form action="{% url 'book' %}" method="post" class="needs-validation" novalidate>
         {% csrf_token %}
 
         <div class="mb-3">
@@ -46,25 +46,3 @@
 {% endblock content %}
 
 {% block footer %}{% endblock footer %}
-
-{% block javascript %}
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const loginForm = document.querySelector(".needs-validation");
-
-      loginForm.addEventListener("submit", (event) => {
-        if (!loginForm.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-          displayValidationErrors();
-        }
-      loginForm.classList.add("was-validated");
-      })
-
-      function displayValidationErrors() {
-        const validationErrors = document.getElementById("validation-error");
-        validationErrors.innerHTML = "Please fill out all the required fields correctly!"
-      }
-    })
-</script>
-{% endblock javascript %}

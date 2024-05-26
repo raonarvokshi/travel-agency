@@ -46,14 +46,3 @@ On Windows
 ```bash
 python manage.py runserver
 ```
-## Screenshots
-
-![App Screenshot](landing_page.png)
-
-![App Screenshot](about_us_page.png)
-
-![App Screenshot](our_services_page.png)
-
-![App Screenshot](contact_us_page.png)
-
-![App Screenshot](book_your_trip_page.png)

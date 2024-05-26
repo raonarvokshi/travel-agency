@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 from App import views
+from django.conf.urls import handler404
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +28,7 @@ urlpatterns = [
     path("account/change-password/", views.change_password, name="change_password"),
     path("manage-users/", views.manage_users, name="manage_users"),
     path("edit-user/<str:user_id>", views.edit_user, name="edit_user"),
-    path("delete-user/<str:user_id>/", views.delete_user, name="delete_user")
-]
+    path("delete-user/<str:user_id>/", views.delete_user, name="delete_user"),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = "App.views.not_found_error"
